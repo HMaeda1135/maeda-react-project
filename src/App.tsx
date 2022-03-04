@@ -1,25 +1,27 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { FirebaseProvider } from "./firebase";
+import PrivateRoute from "./PrivateRoute";
+import { Top } from "./pages/Top";
+import { Home } from "./pages/Home";
+import paths from "./paths";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React deploy
-        </a>
-      </header>
-    </div>
+    <FirebaseProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* <div> */}
+          <Route path={paths.top} element={<Top />} />
+          <Route path={paths.home} element={<Home />} />
+          {/* <PrivateRoute path={paths.home} element={<Home />}>
+            <Route element={paths.top} />
+          </PrivateRoute> */}
+          {/* </div> */}
+        </Routes>
+      </BrowserRouter>
+    </FirebaseProvider>
   );
 }
 
