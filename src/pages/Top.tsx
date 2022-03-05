@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
-// import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import LoginWithEmail from "../components/LoginWithEmail";
-import LoginWithGoogle from "../components/LoginWithGoogle";
-import SignupWithEmail from "../components/SignupWithEmail";
-import { FirebaseContext } from "../contexts";
-import paths from "../paths";
+import LoginWithEmail from "components/login/LoginWithEmail";
+import LoginWithGoogle from "components/login/LoginWithGoogle";
+import SignupWithEmail from "components/login/SignupWithEmail";
+import { FirebaseContext } from "contexts";
+import paths from "paths";
 
 export const Top: React.FC = () => {
   const navigate = useNavigate();
@@ -13,7 +12,8 @@ export const Top: React.FC = () => {
   const { user } = useContext(FirebaseContext);
 
   useEffect(() => {
-    // user && history.push(paths.home);
+    console.log("top useeffect");
+    console.log(user);
     user && navigate(paths.home);
   }, [location.pathname]);
 
@@ -34,6 +34,3 @@ export const Top: React.FC = () => {
     </div>
   );
 };
-
-// export default withRouter(Top);
-// export default Top;

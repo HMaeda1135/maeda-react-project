@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
-// import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import { loginWithGoogle } from "../firebase";
-import paths from "../paths";
+import { loginWithGoogle } from "firebaseProvider";
+import paths from "paths";
 
 const LoginWithGoogle: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +10,6 @@ const LoginWithGoogle: React.FC = () => {
     async (event) => {
       event.preventDefault();
       await loginWithGoogle();
-      //   history.push(paths.home);
       navigate(paths.home);
     },
     [location.pathname]
@@ -26,5 +24,4 @@ const LoginWithGoogle: React.FC = () => {
   );
 };
 
-// export default withRouter(LoginWithGoogle);
 export default LoginWithGoogle;
