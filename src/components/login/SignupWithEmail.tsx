@@ -1,18 +1,16 @@
 import React, { useCallback } from "react";
-// import { withRouterk, RouteComponentProps } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import { loginWithEmail } from "../firebase";
-import paths from "../paths";
+import { signupWithEmail } from "firebaseProvider";
+import paths from "paths";
 
-const LoginWithEmail: React.FC = () => {
+const SignupWithEmail: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const handleSubmit = useCallback(
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
-      await loginWithEmail(email.value, password.value);
-      //   history.push(paths.home);
+      await signupWithEmail(email.value, password.value);
       navigate(paths.home);
     },
     [location.pathname]
@@ -21,7 +19,7 @@ const LoginWithEmail: React.FC = () => {
   return (
     <>
       <div className="header-auth">
-        <span>ログイン</span>
+        <span>サインアップ</span>
       </div>
       <form onSubmit={handleSubmit}>
         <div>
@@ -30,11 +28,10 @@ const LoginWithEmail: React.FC = () => {
         <div>
           <input name="password" type="password" placeholder="パスワード" />
         </div>
-        <button type="submit">ログイン</button>
+        <button type="submit">サインアップ</button>
       </form>
     </>
   );
 };
 
-// export default withRouter(LoginWithEmail);
-export default LoginWithEmail;
+export default SignupWithEmail;
