@@ -28,7 +28,9 @@ const SignupWithEmail: React.FC = () => {
         <div>
           <input name="password" type="password" placeholder="パスワード" />
         </div>
-        <button type="submit">サインアップ</button>
+        <button className="auth-button" type="submit">
+          サインアップ
+        </button>
       </form>
     </>
   );

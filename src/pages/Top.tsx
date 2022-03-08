@@ -12,8 +12,6 @@ export const Top: React.FC = () => {
   const { user } = useContext(FirebaseContext);
 
   useEffect(() => {
-    console.log("top useeffect");
-    console.log(user);
     user && navigate(paths.home);
   }, [location.pathname]);
 

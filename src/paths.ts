@@ -1,6 +1,7 @@
 const paths = {
   top: "/",
   home: "/home",
+  profile: "/profile",
   user: "/user",
   todo: "/todo",
   react: "/react",

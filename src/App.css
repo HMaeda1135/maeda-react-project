@@ -46,7 +46,7 @@ input {
   padding: 10px;
 }
 
-button {
+.auth-button {
   width: 150px;
   margin: 5px;
   padding: 5px;
@@ -90,4 +90,21 @@ hr {
   .wrap-top {
     flex-direction: column;
   }
+}
+
+/* main style */
+
+.page-box,
+.contents-box {
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+}
+
+.normal-label,
+.normal-data {
+  font-size: 16px;
+  font-weight: bold;
 }
