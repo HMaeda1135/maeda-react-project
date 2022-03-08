@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
@@ -16,12 +16,20 @@ import MailIcon from "@mui/icons-material/Mail";
 import { RootState } from "index";
 import { setOpen } from "store/reducer/commonReducer";
 
+const mainPage: Array<string> = [
+  "Home",
+  "User",
+  "Todo",
+  "React",
+  "Vue",
+  "Flutter",
+];
+const subPage: Array<string> = ["Test", "Play", "Other"];
+
 export const MenuList: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
   const open: any = useSelector<RootState>((state) => state.common.open);
-  console.log("MenuList");
 
   const toggleDrawer =
     (status: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -50,20 +58,18 @@ export const MenuList: React.FC = () => {
           onKeyDown={toggleDrawer(false)}
         >
           <List>
-            {["Home", "User", "Todo", "React", "Vue", "Flutter"].map(
-              (text, index) => (
-                <ListItemButton key={text} onClick={() => goPage(text)}>
-                  <ListItemIcon>
-                    <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              )
-            )}
+            {mainPage.map((text) => (
+              <ListItemButton key={text} onClick={() => goPage(text)}>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            ))}
           </List>
           <Divider />
           <List>
-            {["Test", "Play", "Other"].map((text, index) => (
+            {subPage.map((text) => (
               <ListItemButton key={text} onClick={() => goPage(text)}>
                 <ListItemIcon>
                   <MailIcon />

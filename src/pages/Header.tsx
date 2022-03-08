@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import { UserInfo, UserInfoType } from "utils/util";
 import { MenuList } from "components/MenuList";
 import { setOpen } from "store/reducer/commonReducer";
 
@@ -26,15 +27,8 @@ export const Header = () => {
   const dispatch = useDispatch();
   const { user } = useContext(FirebaseContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const userName: string = user
-    ? user.displayName
-    : process.env.DEFAULT_USER_NAME;
-  const userMail: string = user ? user.email : process.env.DEFAULT_USER_EMAIL;
-  const userPhoto: string = user
-    ? user.photoURL
-    : process.env.PUBLIC_URL + "/user.png";
+  const userInfo: UserInfoType = UserInfo();
   console.log("Header");
-  console.log(user);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -48,6 +42,11 @@ export const Header = () => {
     setAnchorEl(null);
     await app.auth().signOut();
     await navigate("/");
+  };
+
+  const goProfile = async () => {
+    setAnchorEl(null);
+    await navigate("/profile");
   };
 
   const setMenu = () => {
@@ -70,7 +69,7 @@ export const Header = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Maechan React System
+              MRS
             </Typography>
             <IconButton
               size="large"
@@ -80,7 +79,7 @@ export const Header = () => {
               onClick={handleMenu}
               color="inherit"
             >
-              <Avatar alt="User Icon" src={userPhoto} />
+              <Avatar alt="User Icon" src={userInfo.userPhoto} />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -102,20 +101,20 @@ export const Header = () => {
                   <CardMedia
                     component="img"
                     height="220"
-                    image={userPhoto}
+                    image={userInfo.userPhoto}
                     alt="No Image"
                   />
                   <CardContent>
                     <Typography variant="h4" component="div">
-                      {userName}
+                      {userInfo.userName}
                     </Typography>
                     <Typography variant="h5" component="div">
-                      {userMail}
+                      {userInfo.userMail}
                     </Typography>
                   </CardContent>
                 </Card>
               </MenuItem>
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={goProfile}>Profile</MenuItem>
               <MenuItem onClick={onLogout}>ログアウト</MenuItem>
             </Menu>
           </Toolbar>

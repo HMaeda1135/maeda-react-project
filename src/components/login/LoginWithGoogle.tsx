@@ -17,7 +17,7 @@ const LoginWithGoogle: React.FC = () => {
 
   return (
     <>
-      <button onClick={handleSubmit} className="btn-google">
+      <button onClick={handleSubmit} className="auth-button btn-google">
         Googleでログイン
       </button>
     </>
